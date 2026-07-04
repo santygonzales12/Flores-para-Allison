@@ -11,47 +11,53 @@
 
 <body>
 
-    <div class="stars"></div>
+    <!-- Fondo -->
+    <div class="background">
+        <div class="stars"></div>
+        <div class="moon"></div>
+    </div>
 
-    <div class="contenedor">
+    <!-- Pantalla principal -->
+    <main class="pantalla">
 
         <h1>Hola Allison ❤️</h1>
 
         <h2>Te amo.</h2>
 
-        <p>Quería mostrarte algo que hice especialmente para ti...</p>
+        <p>
+            Quería mostrarte algo que preparé especialmente para ti...
+        </p>
 
-        <button onclick="mostrarMensaje()">
-            Presiona aquí ❤️
+        <button id="boton" onclick="iniciarSorpresa()">
+            Abrir mi sorpresa 💌
         </button>
 
-        <div id="mensaje">
+        <!-- Cuenta regresiva -->
+        <div id="contador"></div>
 
-            <div class="carta">
+        <!-- Flores -->
+        <section id="flores" class="oculto">
 
-                <h2>💌 Para Allison 💖</h2>
+            <div class="girasol"></div>
+            <div class="girasol"></div>
+            <div class="girasol"></div>
 
-                <p id="texto">
-                    Hola Allison.
+        </section>
 
-                    Quería hacerte esta pequeña sorpresa porque eres una persona muy especial para mí.
+        <!-- Carta -->
+        <section id="carta" class="oculto">
 
-                    Tal vez no soy el mejor expresando lo que siento con palabras, pero quería que supieras que me haces muy feliz.
+            <div class="papel">
 
-                    Gracias por cada momento, por cada sonrisa y por existir.
+                <h2>💌 Para Allison</h2>
 
-                    ❤️
-                </p>
+                <p id="texto"></p>
 
             </div>
 
-            <div class="flores">
-                🌻 🌻 🌻
-            </div>
+        </section>
 
-        </div>
-
-    </div>
+    </main>
 
     <script src="script.js"></script>
 
