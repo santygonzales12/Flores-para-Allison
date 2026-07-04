@@ -1,0 +1,78 @@
+body{
+margin:0;
+padding:0;
+background:#000;
+font-family:Arial,sans-serif;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+overflow:hidden;
+}
+
+.contenedor{
+text-align:center;
+z-index:2;
+padding:20px;
+}
+
+h1{
+color:#ffe600;
+text-shadow:0 0 15px yellow;
+}
+
+h2{
+color:#ffffff;
+}
+
+p{
+font-size:20px;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+border:none;
+border-radius:10px;
+background:#7b2cff;
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #a100ff;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+#mensaje{
+display:none;
+margin-top:30px;
+animation:aparecer 1s;
+}
+
+.flores{
+font-size:70px;
+margin-top:20px;
+animation:flotar 2s infinite alternate;
+}
+
+@keyframes aparecer{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes flotar{
+from{transform:translateY(0);}
+to{transform:translateY(-15px);}
+}
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+opacity:.35;
+z-index:0;
+}
