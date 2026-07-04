@@ -1,4 +1,4 @@
-const mensaje = `Hola Allison.
+const mensaje = `Hola Allison ❤️
 
 Quería hacerte esta pequeña sorpresa porque eres una persona muy especial para mí.
 
@@ -6,99 +6,104 @@ No soy el mejor expresando lo que siento, pero quería que supieras que me haces
 
 Gracias por cada sonrisa, por cada momento y simplemente por existir.
 
-Con mucho cariño.
+Te amo muchísimo. ❤️`;
 
-❤️`;
+function escribirTexto(){
 
-function escribirTexto() {
+    const texto=document.getElementById("texto");
 
-    const texto = document.getElementById("texto");
+    texto.innerHTML="";
 
-    texto.innerHTML = "";
+    let i=0;
 
-    let i = 0;
+    const intervalo=setInterval(()=>{
 
-    const intervalo = setInterval(() => {
-
-        texto.innerHTML += mensaje.charAt(i);
+        texto.innerHTML+=mensaje.charAt(i);
 
         i++;
 
-        if(i >= mensaje.length){
+        if(i>=mensaje.length){
 
             clearInterval(intervalo);
 
         }
 
-    },30);
+    },35);
 
 }
 
-function crearCorazon(){
+function iniciarSorpresa(){
 
-    const corazon = document.createElement("div");
+    document.getElementById("boton").style.display="none";
 
-    corazon.innerHTML = "❤️";
+    const contador=document.getElementById("contador");
 
-    corazon.style.position = "fixed";
-    corazon.style.left = Math.random()*100 + "vw";
-    corazon.style.top = "100vh";
-    corazon.style.fontSize = (20 + Math.random()*25) + "px";
-    corazon.style.pointerEvents = "none";
-    corazon.style.animation = "subir 5s linear forwards";
+    let numero=3;
 
-    document.body.appendChild(corazon);
+    contador.innerHTML=numero;
 
-    setTimeout(()=>{
+    const tiempo=setInterval(()=>{
 
-        corazon.remove();
+        numero--;
 
-    },5000);
+        if(numero>0){
+
+            contador.innerHTML=numero;
+
+        }else{
+
+            clearInterval(tiempo);
+
+            contador.innerHTML="❤️";
+
+            setTimeout(mostrarCarta,1000);
+
+        }
+
+    },1000);
 
 }
 
-function mostrarMensaje(){
+function mostrarCarta(){
 
-    document.getElementById("mensaje").style.display = "block";
+    document.getElementById("contador").style.display="none";
 
-    escribirTexto();
+    const flores=document.getElementById("flores");
 
-    for(let i=0;i<80;i++){
+    flores.classList.remove("oculto");
+
+    const girasoles=document.querySelectorAll(".girasol");
+
+    girasoles.forEach((flor,index)=>{
 
         setTimeout(()=>{
 
-            crearCorazon();
+            flor.animate([
 
-        },i*80);
+                {transform:"scale(0)"},
 
-    }
+                {transform:"scale(1.2)"},
 
-}
+                {transform:"scale(1)"}
 
-const estilo = document.createElement("style");
+            ],{
 
-estilo.innerHTML = `
+                duration:900,
 
-@keyframes subir{
+                fill:"forwards"
 
-0%{
+            });
 
-transform:translateY(0);
+        },index*500);
 
-opacity:1;
+    });
 
-}
+    setTimeout(()=>{
 
-100%{
+        document.getElementById("carta").classList.remove("oculto");
 
-transform:translateY(-120vh);
+        escribirTexto();
 
-opacity:0;
-
-}
+    },2200);
 
 }
-
-`;
-
-document.head.appendChild(estilo);
