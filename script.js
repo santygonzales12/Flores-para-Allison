@@ -1,32 +1,54 @@
-function mostrarMensaje(){
+const mensaje = `No importa cuánto pase el tiempo...
 
-document.getElementById("mensaje").style.display="block";
+Siempre habrá una razón para sonreír cuando pienso en ti.
 
-for(let i=0;i<30;i++){
+Gracias por existir. ❤️`;
 
-let corazon=document.createElement("div");
+function escribirTexto() {
+    const texto = document.getElementById("texto");
+    texto.innerHTML = "";
 
-corazon.innerHTML="❤️";
+    let i = 0;
 
-corazon.style.position="fixed";
-corazon.style.left=Math.random()*100+"vw";
-corazon.style.top="100vh";
-corazon.style.fontSize=(20+Math.random()*25)+"px";
-corazon.style.animation="subir 5s linear forwards";
+    const intervalo = setInterval(() => {
+        texto.innerHTML += mensaje.charAt(i);
+        i++;
 
-document.body.appendChild(corazon);
-
-setTimeout(()=>{
-corazon.remove();
-},5000);
-
+        if (i >= mensaje.length) {
+            clearInterval(intervalo);
+        }
+    }, 45);
 }
 
+function mostrarMensaje() {
+
+    document.getElementById("mensaje").style.display = "block";
+
+    escribirTexto();
+
+    for (let i = 0; i < 35; i++) {
+
+        let corazon = document.createElement("div");
+
+        corazon.innerHTML = "❤️";
+
+        corazon.style.position = "fixed";
+        corazon.style.left = Math.random() * 100 + "vw";
+        corazon.style.top = "100vh";
+        corazon.style.fontSize = (20 + Math.random() * 25) + "px";
+        corazon.style.animation = "subir 5s linear forwards";
+
+        document.body.appendChild(corazon);
+
+        setTimeout(() => {
+            corazon.remove();
+        }, 5000);
+    }
 }
 
-const estilo=document.createElement("style");
+const estilo = document.createElement("style");
 
-estilo.innerHTML=`
+estilo.innerHTML = `
 @keyframes subir{
 0%{
 transform:translateY(0);
