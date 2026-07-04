@@ -8,102 +8,149 @@ Gracias por cada sonrisa, por cada momento y simplemente por existir.
 
 Te amo muchísimo. ❤️`;
 
-function escribirTexto(){
+function escribirTexto() {
 
-    const texto=document.getElementById("texto");
+    const texto = document.getElementById("texto");
+    texto.innerHTML = "";
 
-    texto.innerHTML="";
+    let i = 0;
 
-    let i=0;
+    const velocidad = setInterval(() => {
 
-    const intervalo=setInterval(()=>{
-
-        texto.innerHTML+=mensaje.charAt(i);
+        texto.innerHTML += mensaje.charAt(i);
 
         i++;
 
-        if(i>=mensaje.length){
+        if (i >= mensaje.length) {
 
-            clearInterval(intervalo);
+            clearInterval(velocidad);
+
+            lanzarCorazones();
 
         }
 
-    },35);
+    }, 35);
 
 }
 
-function iniciarSorpresa(){
+function iniciarSorpresa() {
 
-    document.getElementById("boton").style.display="none";
+    document.getElementById("boton").style.display = "none";
 
-    const contador=document.getElementById("contador");
+    const contador = document.getElementById("contador");
 
-    let numero=3;
+    let numero = 3;
 
-    contador.innerHTML=numero;
+    contador.innerHTML = numero;
 
-    const tiempo=setInterval(()=>{
+    const tiempo = setInterval(() => {
 
         numero--;
 
-        if(numero>0){
+        if (numero > 0) {
 
-            contador.innerHTML=numero;
+            contador.innerHTML = numero;
 
-        }else{
+        } else if (numero === 0) {
+
+            contador.innerHTML = "❤️";
+
+        } else {
 
             clearInterval(tiempo);
 
-            contador.innerHTML="❤️";
+            contador.style.display = "none";
 
-            setTimeout(mostrarCarta,1000);
+            mostrarFlores();
 
         }
 
-    },1000);
+    }, 1000);
 
 }
 
-function mostrarCarta(){
+function mostrarFlores() {
 
-    document.getElementById("contador").style.display="none";
-
-    const flores=document.getElementById("flores");
+    const flores = document.getElementById("flores");
 
     flores.classList.remove("oculto");
 
-    const girasoles=document.querySelectorAll(".girasol");
+    const girasoles = document.querySelectorAll(".girasol");
 
-    girasoles.forEach((flor,index)=>{
+    girasoles.forEach((flor, i) => {
 
-        setTimeout(()=>{
+        setTimeout(() => {
 
-            flor.animate([
+            flor.animate(
+                [
+                    { transform: "scale(0)" },
+                    { transform: "scale(1.2)" },
+                    { transform: "scale(1)" }
+                ],
+                {
+                    duration: 900,
+                    fill: "forwards"
+                }
+            );
 
-                {transform:"scale(0)"},
-
-                {transform:"scale(1.2)"},
-
-                {transform:"scale(1)"}
-
-            ],{
-
-                duration:900,
-
-                fill:"forwards"
-
-            });
-
-        },index*500);
+        }, i * 500);
 
     });
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         document.getElementById("carta").classList.remove("oculto");
 
         escribirTexto();
 
-    },2200);
+    }, 2200);
 
 }
+
+function lanzarCorazones() {
+
+    for (let i = 0; i < 40; i++) {
+
+        setTimeout(() => {
+
+            const corazon = document.createElement("div");
+
+            corazon.innerHTML = "❤️";
+
+            corazon.style.position = "fixed";
+            corazon.style.left = Math.random() * 100 + "vw";
+            corazon.style.top = "100vh";
+            corazon.style.fontSize = (18 + Math.random() * 20) + "px";
+            corazon.style.pointerEvents = "none";
+            corazon.style.animation = "subir 5s linear forwards";
+
+            document.body.appendChild(corazon);
+
+            setTimeout(() => {
+
+                corazon.remove();
+
+            }, 5000);
+
+        }, i * 120);
+
+    }
+
+}
+
+const estilo = document.createElement("style");
+
+estilo.innerHTML = `
+@keyframes subir{
+0%{
+transform:translateY(0);
+opacity:1;
+}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+`;
+
+document.head.appendChild(estilo);
